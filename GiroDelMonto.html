@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en" style="overflow-y: hidden">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -194,10 +195,11 @@
 <div class="container" style="width: 100%;">
     <div class="row" style="background-color: black">
         <div class="col-sm-2" style="padding-left: 0">
-            <button class="openbtn" onclick="openNav()">☰ Menu</button>
+            <button class="openbtn" onclick="openNav()">☰</button>
         </div>
         <div class="col-sm-2" style="height: 50px;">
-            <select name="selectStartingPoint" id="selectStartingPoint" style="height: 40px;margin-top:5px; width: 100%"></select>
+            <select name="selectStartingPoint" id="selectStartingPoint" style="height: 40px;margin-top:5px; width: 100%">
+            </select>
         </div>
 
         <div class="col-sm-5" style="height: 50px;">
@@ -217,18 +219,6 @@
                 </div>
             </div>
         </div>
-        <!--<div class="col-sm-8">
-            <div class="row">
-                <div class="col-sm-3" style="color:#0d6efd;font-size: 18px;
-    margin-top: 12px;text-align: center">Marker non raggiungibili</div>
-                <div class="col-sm-3" style="color:red;font-size: 18px;
-    margin-top: 12px;text-align: center">Marker raggiungibili</div>
-                <div class="col-sm-3" style="color:orange;font-size: 18px;
-    margin-top: 12px;text-align: center">Marker di partenza (NON raggiungibile)</div>
-                <div class="col-sm-3" style="color:green;font-size: 18px;
-    margin-top: 12px;text-align: center">Marker di partenza (raggiungibile)</div>
-            </div>
-        </div>-->
         <div class="col-sm-12" style="padding: 0">
             <iframe id="myFrame" style="height: 95vh;width: 100%; overflow-y: hidden"></iframe>
         </div>
@@ -242,6 +232,7 @@
     }
 
     function updateSelect(loc){
+
         $('#selectStartingPoint').append("<option value='"+loc+"'>"+loc+"</option>")
 	    $('#selectHome').append("<option value='"+loc+"'>"+loc+"</option>")
 	    $('#obiettivo1').append("<option value='"+loc+"'>"+loc+"</option>")
@@ -253,19 +244,14 @@
 	    $('#obiettivo7').append("<option value='"+loc+"'>"+loc+"</option>")
 	    $('#obiettivo8').append("<option value='"+loc+"'>"+loc+"</option>")
     }
-
-    /*$('#createPath').on('click', () =>{
-        let n = $('#pathLenght').val()
-        let start = $('#selectStartingPoint').val()
-    })*/
 </script>
 <py-config>
-            packages = [
-              "folium",
-            ]
+    packages = [
+      "folium",
+    ]
 </py-config>
 <py-script>
-        import webbrowser
+    import webbrowser
     import folium
     import tempfile
 
@@ -579,6 +565,8 @@
             self.locations[self.getIndex('Dakar')].addPoint(self.getIndex('Abidjan'), 2)  #
             self.locations[self.getIndex('Dakar')].addPoint(self.getIndex('Rabat'), 1)  #
             self.locations[self.getIndex('Dakar')].addPoint(self.getIndex('Bamako'), 1)  #
+            self.locations[self.getIndex('Dakar')].addPoint(self.getIndex('Rio de Janeiro'), 2)  #
+            self.locations[self.getIndex('Dakar')].addPoint(self.getIndex('Lisboa'), 1)  #
 
             # Collegamenti Bamako
             self.locations[self.getIndex('Bamako')].addPoint(self.getIndex('Timbuktu'), 1)  #
@@ -693,6 +681,7 @@
 
             # Collegamenti Reykjavik
             self.locations[self.getIndex('Reykjavik')].addPoint(self.getIndex('Edinburgh'), 2)  #
+            self.locations[self.getIndex('Reykjavik')].addPoint(self.getIndex('Godthaab'), 2)  #
 
             # Collegamenti Trondheim
             self.locations[self.getIndex('Trondheim')].addPoint(self.getIndex('Narvik'), 1)  #
@@ -741,7 +730,7 @@
             self.locations[self.getIndex('Kopenhagen')].addPoint(self.getIndex('Hamburg'), 1)  #
 
             # Collegamenti Edinburgh
-            self.locations[self.getIndex('Edinburgh')].addPoint(self.getIndex('Reykjavik'), 1)  #
+            self.locations[self.getIndex('Edinburgh')].addPoint(self.getIndex('Reykjavik'), 2)  #
             self.locations[self.getIndex('Edinburgh')].addPoint(self.getIndex('Dublin'), 2)  #
             self.locations[self.getIndex('Edinburgh')].addPoint(self.getIndex('London'), 1)  #
 
@@ -881,7 +870,7 @@
             self.locations[self.getIndex('Bordeaux')].addPoint(self.getIndex('Paris'), 1)  #
 
             # Collegamenti Marseille
-            self.locations[self.getIndex('Marseille')].addPoint(self.getIndex('Marseille'), 2)  #
+            self.locations[self.getIndex('Marseille')].addPoint(self.getIndex('Alger'), 2)  #
             self.locations[self.getIndex('Marseille')].addPoint(self.getIndex('Paris'), 1)  #
             self.locations[self.getIndex('Marseille')].addPoint(self.getIndex('Madrid'), 1)  #
             self.locations[self.getIndex('Marseille')].addPoint(self.getIndex('Milan'), 1)  #
@@ -914,6 +903,7 @@
             # Collegamenti Istanbul
             self.locations[self.getIndex('Istanbul')].addPoint(self.getIndex('Sofiva'), 1)  #
             self.locations[self.getIndex('Istanbul')].addPoint(self.getIndex('Ankara'), 1)  #
+            self.locations[self.getIndex('Istanbul')].addPoint(self.getIndex('Frankfurt'), 2)  #
 
             # Collegamenti Ankara
             self.locations[self.getIndex('Ankara')].addPoint(self.getIndex('Baghdad'), 2)  #
@@ -1137,7 +1127,7 @@
             self.locations[self.getIndex('Tokyo')].addPoint(self.getIndex('Hong Kong'), 2)  #
             self.locations[self.getIndex('Tokyo')].addPoint(self.getIndex('Seoul'), 2)  #
             self.locations[self.getIndex('Tokyo')].addPoint(self.getIndex('Honolulu'), 2)  #
-            self.locations[self.getIndex('Sapporo')].addPoint(self.getIndex('Honolulu'), 1)  #
+            self.locations[self.getIndex('Tokyo')].addPoint(self.getIndex('Sapporo'), 1)  #
 
             # Collegamentei Sapporo
             self.locations[self.getIndex('Sapporo')].addPoint(self.getIndex('Tokyo'), 1)  #
